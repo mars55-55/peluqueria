@@ -26,4 +26,10 @@ class ReservaController extends Controller
 
         return redirect()->back()->with('success', 'Reserva realizada con éxito');
     }
+
+    public function create()
+    {
+        // Código para mostrar el formulario de creación de reservas
+        return view('reservar');
+    }
 }
