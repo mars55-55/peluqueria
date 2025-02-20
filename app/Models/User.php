@@ -4,19 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name', 'email', 'password', 'role'];
 
-    protected $hidden = [
-        'password',
-    ];
+    public function barbero()
+    {
+        return $this->hasOne(Barbero::class);
+    }
+
+    public function citas()
+    {
+        return $this->hasMany(Cita::class, 'cliente_id');
+    }
 }
